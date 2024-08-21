@@ -53,9 +53,9 @@ const loginController = async (req, res) => {
                 message: "Password is incorrect"
             })
         }
-        
-        const token = jwt.sign({id:existingUser._id},process.env.JWT_SECRET,{expiresIn:"1d"});
-        
+
+        const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+
         return res.status(200).send({
             success: true,
             message: "Login Successfully",
@@ -70,5 +70,33 @@ const loginController = async (req, res) => {
     }
 };
 
+const authController = async (req, res) => {
+    try {
+        const user = await userModel.findOne({ _id: req.body.userId })
 
-module.exports = { loginController, registerController };
+        if (!user) {
+            return res.status(200).send({
+                message: "User Not Found",
+                success: false
+            });
+        } else {
+            res.status(200).send({
+                success: true,
+                data: {
+                    name: user.name,
+                    email: user.email,
+                }
+            });
+        }
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            message: "Auth Controller Error",
+            error
+        })
+    }
+}
+
+module.exports = { loginController, registerController, authController };
