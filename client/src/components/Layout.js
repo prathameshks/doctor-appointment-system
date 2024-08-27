@@ -3,6 +3,7 @@ import '../styles/LayoutStyles.css'
 import { userMenu, adminMenu } from '../data/data'
 import { Link, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { Avatar, Badge } from 'antd'
 
 
 const Layout = ({ children }) => {
@@ -32,7 +33,7 @@ const Layout = ({ children }) => {
                                     </>
                                 )
                             })}
-                            <hr/>
+                            <hr />
                             <div className='menu-item'>
                                 <i className='fa-solid fa-right-from-bracket'></i>
                                 <Link to={'/logout'}>Logout</Link>
@@ -42,7 +43,10 @@ const Layout = ({ children }) => {
                     <div className='content'>
                         <div className='header'>
                             <div className='header-content'>
-                                <i className='fa-solid fa-bell' ></i>
+                                
+                                <Badge count={user?.notification.length}>
+                                    <i className='fa-solid fa-bell' ></i>
+                                </Badge>
                                 <Link to={'/profile'}>{user?.name}</Link>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 const express = require("express");
-const { loginController, registerController, authController } = require("../controllers/userCtrl");
+const { loginController, registerController, authController,applyDoctorController } = require("../controllers/userCtrl");
 const authMiddleware = require("../middleware/authMiddleware");
 
 // router object
@@ -12,6 +12,10 @@ router.post('/login', loginController);
 // register POST
 router.post('/register', registerController);
 
-router.post('/getUserData', authMiddleware, authController)
+// Auth POST
+router.post('/getUserData', authMiddleware, authController);
+
+// Apply Doctor POST
+router.post('/apply-doctor', authMiddleware, applyDoctorController);
 
 module.exports = router;

@@ -87,7 +87,7 @@
 }
 
 .header-content i{
-    margin-right: 20px;
+    margin-right: 5px;
     font-size: 1.2rem;
 }
 
@@ -96,6 +96,7 @@
     color: blue;
     margin: 0 10px;
     font-size: 1.2rem;
+    margin-left: 20px;
     text-transform: uppercase;
 }
 
